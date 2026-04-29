@@ -1,0 +1,6 @@
+{
+  "name": "GoRent",
+  "description": "Hệ thống quản lý dịch vụ cho thuê xe chuyên nghiệp với phân quyền đa vai trò (Admin, Nhân viên, Kế toán, Bảo dưỡng).",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
