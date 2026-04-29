@@ -36,7 +36,7 @@ export default function RentalStaffDashboard({ mode = 'contracts' }: RentalStaff
           <h1 className="text-2xl font-bold tracking-tight text-maroon">
             {mode === 'delivery' ? 'Giao nhận xe' : 'Quản lý hợp đồng'}
           </h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-sm text-gray-600 mt-1 font-medium">
             {mode === 'delivery' ? 'Quản lý quy trình bàn giao và thu hồi xe từ khách hàng.' : 'Theo dõi, phê duyệt và quản lý các yêu cầu thuê xe.'}
           </p>
         </div>
@@ -48,16 +48,16 @@ export default function RentalStaffDashboard({ mode = 'contracts' }: RentalStaff
         )}
       </div>
 
-      <div className="glass bg-white/40 rounded-3xl border border-white/20 shadow-xl shadow-maroon/5 p-6">
+      <div className="bg-white rounded-3xl border border-gray-100 shadow-xl shadow-gray-200/50 p-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
            <div className="relative flex-grow max-w-md">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-maroon opacity-30" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               <input 
                 type="text" 
                 placeholder="Tìm hợp đồng, tên khách, SĐT..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-white/40 border border-white/30 rounded-2xl focus:bg-white focus:ring-2 focus:ring-maroon/10 focus:outline-none text-sm transition-all text-maroon placeholder:text-maroon/30"
+                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:bg-white focus:ring-2 focus:ring-maroon/10 focus:outline-none text-sm transition-all text-black placeholder:text-gray-400"
               />
            </div>
         </div>
@@ -69,47 +69,45 @@ export default function RentalStaffDashboard({ mode = 'contracts' }: RentalStaff
               <div 
                 key={contract.id}
                 onClick={() => navigate(`/dashboard/contract/${contract.id}`)}
-                className="group glass bg-white/40 rounded-3xl border border-white/20 p-6 hover:shadow-xl hover:shadow-maroon/5 transition-all cursor-pointer relative overflow-hidden"
+                className="group bg-white rounded-3xl border border-gray-100 p-6 hover:shadow-2xl hover:shadow-gray-200 transition-all cursor-pointer relative overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-24 h-24 -mr-12 -mt-12 group-hover:bg-white/40 bg-white/20 rounded-full group-hover:scale-150 transition-transform duration-500 z-0"></div>
-                
                 <div className="relative z-10">
                    <div className="flex justify-between items-start mb-6">
                       <div className={`p-3 rounded-2xl ${
-                        contract.status === 'delivered' ? 'bg-maroon-light/10 text-maroon-light' :
-                        contract.status === 'confirmed' ? 'bg-green-50 text-green-600' : 'bg-white/40 text-gray-400'
+                        contract.status === 'delivered' ? 'bg-maroon/10 text-maroon' :
+                        contract.status === 'confirmed' ? 'bg-green-50 text-green-600' : 'bg-gray-50 text-gray-400'
                       }`}>
                          <FileText className="w-6 h-6" />
                       </div>
                       <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase ${
-                        contract.status === 'delivered' ? 'bg-maroon-light/10 text-maroon-light' :
-                        contract.status === 'confirmed' ? 'bg-green-50 text-green-600' : 'bg-gray-100 text-gray-500'
+                        contract.status === 'delivered' ? 'bg-maroon text-white' :
+                        contract.status === 'confirmed' ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-500'
                       }`}>
                         {contract.status === 'delivered' ? 'Đã giao xe' :
                          contract.status === 'confirmed' ? 'Chờ nhận' : 'Phê duyệt'}
                       </span>
                    </div>
 
-                   <h3 className="text-lg font-bold mb-1 text-maroon">{contract.customerName}</h3>
-                   <p className="text-xs text-maroon/40 font-medium mb-6 uppercase tracking-wider">{car?.name} &middot; {car?.licensePlate}</p>
+                   <h3 className="text-lg font-bold mb-1 text-black">{contract.customerName}</h3>
+                   <p className="text-xs text-gray-500 font-bold mb-6 uppercase tracking-wider">{car?.name} &middot; {car?.licensePlate}</p>
 
                    <div className="space-y-3 mb-6">
-                      <div className="flex items-center text-xs text-gray-500">
-                        <Clock className="w-3.5 h-3.5 mr-2 text-maroon opacity-30" />
-                        <span>Từ: <strong className="text-maroon/60">{contract.startDate}</strong></span>
+                      <div className="flex items-center text-xs text-gray-500 font-medium">
+                        <Clock className="w-3.5 h-3.5 mr-2 text-gray-400" />
+                        <span>Từ: <strong className="text-black">{contract.startDate}</strong></span>
                       </div>
-                      <div className="flex items-center text-xs text-gray-500">
-                        <Clock className="w-3.5 h-3.5 mr-2 text-maroon opacity-30" />
-                        <span>Đến: <strong className="text-maroon/60">{contract.endDate}</strong></span>
+                      <div className="flex items-center text-xs text-gray-500 font-medium">
+                        <Clock className="w-3.5 h-3.5 mr-2 text-gray-400" />
+                        <span>Đến: <strong className="text-black">{contract.endDate}</strong></span>
                       </div>
                    </div>
 
-                   <div className="flex items-center justify-between pt-4 border-t border-white/20">
+                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                       <div>
-                         <p className="text-[10px] font-bold uppercase text-maroon opacity-40">Tổng phí</p>
-                         <p className="text-sm font-bold text-maroon">{contract.totalPrice.toLocaleString()}đ</p>
+                         <p className="text-[10px] font-bold uppercase text-gray-400">Tổng phí</p>
+                         <p className="text-sm font-black text-black">{contract.totalPrice.toLocaleString()}đ</p>
                       </div>
-                      <div className="flex items-center text-xs font-bold text-maroon opacity-40 group-hover:text-maroon group-hover:opacity-100 transition-colors">
+                      <div className="flex items-center text-xs font-bold text-gray-400 group-hover:text-maroon transition-colors">
                         Chi tiết <ChevronRight className="ml-1 w-4 h-4" />
                       </div>
                    </div>
@@ -124,7 +122,7 @@ export default function RentalStaffDashboard({ mode = 'contracts' }: RentalStaff
              <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4 border border-gray-100">
                 <AlertCircle className="w-8 h-8 text-gray-300" />
              </div>
-             <p className="text-gray-400 text-sm font-medium italic">Không tìm thấy hợp đồng nào...</p>
+             <p className="text-gray-400 text-sm font-bold italic uppercase">Không tìm thấy hợp đồng nào...</p>
           </div>
         )}
       </div>

@@ -24,7 +24,19 @@ import { motion, AnimatePresence } from 'motion/react';
 const Navbar = () => {
   const { currentUser, logout } = useAppContext();
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
+  
+  const isHome = location.pathname === '/';
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -32,43 +44,63 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="glass border-b border-white/20 fixed w-full z-50 top-0">
+    <nav className={`fixed w-full z-50 top-0 transition-all duration-300 ${
+      isHome && !isScrolled ? 'bg-transparent border-transparent' : 'glass border-b border-white/20 bg-white/80'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-between h-16 md:h-20 items-center">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-maroon rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-maroon rounded-xl flex items-center justify-center shadow-lg shadow-maroon/20">
                 <CarFront className="text-white w-6 h-6" />
               </div>
-              <span className="text-2xl font-bold tracking-tighter text-maroon">GoRent</span>
+              <span className={`text-2xl font-black tracking-tighter ${
+                isHome && !isScrolled ? 'text-white' : 'text-maroon'
+              }`}>GoRent</span>
             </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-sm font-medium text-gray-600 hover:text-maroon transition-colors">Trang chủ</Link>
-            <Link to="/cars" className="text-sm font-medium text-gray-600 hover:text-maroon transition-colors">Danh sách xe</Link>
+            <Link to="/" className={`text-sm font-bold uppercase tracking-wider transition-colors ${
+              isHome && !isScrolled ? 'text-white/80 hover:text-white' : 'text-gray-600 hover:text-maroon'
+            }`}>Trang chủ</Link>
+            <Link to="/cars" className={`text-sm font-bold uppercase tracking-wider transition-colors ${
+              isHome && !isScrolled ? 'text-white/80 hover:text-white' : 'text-gray-600 hover:text-maroon'
+            }`}>Danh sách xe</Link>
             {currentUser ? (
               <div className="flex items-center space-x-4">
                 <button 
                   onClick={() => navigate('/dashboard')}
-                  className="flex items-center space-x-2 glass bg-white/40 px-3 py-1.5 rounded-full border border-white/60 hover:bg-white/60 transition-all font-sans"
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-full border transition-all font-black text-xs uppercase tracking-tighter ${
+                    isHome && !isScrolled 
+                    ? 'bg-white/10 border-white/20 text-white hover:bg-white/20' 
+                    : 'bg-maroon/5 border-maroon/10 text-maroon hover:bg-maroon/10'
+                  }`}
                 >
-                  <UserIcon className="w-4 h-4 text-maroon" />
-                  <span className="text-sm font-medium text-maroon">{currentUser.name}</span>
+                  <UserIcon className="w-3.5 h-3.5" />
+                  <span>{currentUser.name}</span>
                 </button>
-                <button onClick={handleLogout} className="text-gray-400 hover:text-maroon transition-colors">
+                <button 
+                  onClick={handleLogout} 
+                  className={`transition-colors p-2 rounded-full ${
+                    isHome && !isScrolled ? 'text-white/60 hover:text-white hover:bg-white/10' : 'text-gray-400 hover:text-maroon hover:bg-maroon/5'
+                  }`}
+                >
                   <LogOut className="w-5 h-5" />
                 </button>
               </div>
             ) : (
-              <Link to="/login" className="bg-maroon text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-maroon-dark transition-all shadow-lg shadow-maroon/20">
+              <Link to="/login" className="bg-maroon text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider hover:bg-maroon-dark transition-all shadow-xl shadow-maroon/40 scale-105 active:scale-95">
                 Đăng nhập
               </Link>
             )}
           </div>
 
           <div className="md:hidden flex items-center">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-600">
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)} 
+              className={`p-2 rounded-lg ${isHome && !isScrolled ? 'text-white' : 'text-gray-600'}`}
+            >
               {isMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
@@ -141,19 +173,24 @@ const Footer = () => (
 
 // --- Layouts ---
 
-const MainLayout = ({ children }: { children: React.ReactNode }) => (
-  <div className="min-h-screen flex flex-col bg-[#fcf8f8] font-sans selection:bg-maroon selection:text-white relative overflow-hidden">
-    {/* Decorative Background for Main Layout */}
-    <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-maroon/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
-    <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-maroon/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
-    
-    <Navbar />
-    <main className="flex-grow pt-16">
-      {children}
-    </main>
-    <Footer />
-  </div>
-);
+const MainLayout = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+  
+  return (
+    <div className="min-h-screen flex flex-col bg-[#fcf8f8] font-sans selection:bg-maroon selection:text-white relative overflow-hidden">
+      {/* Decorative Background for Main Layout */}
+      <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-maroon/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-maroon/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+      
+      <Navbar />
+      <main className={`flex-grow ${isHome ? '' : 'pt-16'}`}>
+        {children}
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
 const ProtectedRoute = ({ children, roles }: { children: React.ReactNode, roles?: string[] }) => {
   const { currentUser } = useAppContext();

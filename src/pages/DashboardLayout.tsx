@@ -147,7 +147,7 @@ export default function DashboardLayout() {
               {currentUser.role === 'admin' ? 'Hệ thống Quản trị' : 
                currentUser.role === 'rental_staff' ? 'Quản lý Dịch vụ' :
                currentUser.role === 'technical_staff' ? 'Quản lý Kỹ thuật' :
-               currentUser.role === 'accounting_staff' ? 'Quản lý Tài chính' : 'Quản lý Bảo dưỡng'}
+               currentUser.role === 'accounting_staff' ? 'Quản lý Kế toán' : 'Quản lý Bảo dưỡng'}
             </h2>
           </div>
 

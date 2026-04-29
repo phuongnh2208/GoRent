@@ -94,7 +94,7 @@ export default function Login() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                placeholder="Ví dụ: admin, nvtx, nvkt, nvbd"
+                placeholder="Ví dụ: admin, nvtx, nvkt, nvky, nvbd"
                 className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:ring-2 focus:ring-maroon focus:bg-white/10 transition-all text-sm font-medium text-white placeholder:text-white/20"
               />
             </div>
@@ -132,8 +132,8 @@ export default function Login() {
           <p className="text-center text-[10px] font-bold uppercase text-white/30 tracking-widest">
             Tài khoản mẫu: 123
           </p>
-          <div className="grid grid-cols-2 gap-2 mt-4">
-             {['admin', 'nvtx', 'nvkt', 'nvbd'].map(role => (
+          <div className="grid grid-cols-3 gap-2 mt-4">
+             {['admin', 'nvtx', 'nvkt', 'nvky', 'nvbd'].map(role => (
                <div key={role} className="text-center text-[10px] py-1.5 bg-white/5 rounded-xl text-white/60 font-bold border border-white/5 uppercase tracking-tighter">
                  {role}
                </div>

@@ -9,9 +9,10 @@ export const MOCK_MAINTENANCE: MaintenanceRecord[] = [
 export const MOCK_USERS: User[] = [
   { id: '1', username: 'admin', name: 'Quản trị viên', role: 'admin' },
   { id: '2', username: 'nvtx', name: 'Nguyễn Văn Thuê', role: 'rental_staff' },
-  { id: '3', username: 'nvkt', name: 'Trần Thị Kỹ', role: 'technical_staff' },
+  { id: '3', username: 'nvkt', name: 'Trần Thị Kế Toán', role: 'accounting_staff' },
   { id: '4', username: 'nvbd', name: 'Lê Văn Dưỡng', role: 'maintenance_staff' },
   { id: '5', username: 'customer1', name: 'Khách hàng A', role: 'customer' },
+  { id: '6', username: 'nvky', name: 'Phạm Văn Kỹ', role: 'technical_staff' },
 ];
 
 export const MOCK_CARS: Car[] = [

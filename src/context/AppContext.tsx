@@ -46,6 +46,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       'admin': '123',
       'nvtx': '123',
       'nvkt': '123',
+      'nvky': '123',
       'nvbd': '123'
     };
 

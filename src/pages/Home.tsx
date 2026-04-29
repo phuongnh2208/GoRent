@@ -15,41 +15,44 @@ export default function Home() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2000" 
             alt="Hero Car" 
-            className="w-full h-full object-cover brightness-50"
+            className="w-full h-full object-cover brightness-[0.4]"
           />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 pb-32 md:pb-24">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl text-white"
+            className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 md:gap-12"
           >
-            <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-widest mb-6">
-              Exclusive Rental Experience
-            </span>
-            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-none mb-8">
-              Cùng GoRent <br />
-              <span className="text-white">Kiến tạo hành trình</span>
-            </h1>
-            <p className="text-xl text-white/80 mb-10 max-w-lg leading-relaxed">
-              Trải nghiệm dịch vụ thuê ô tô & xe máy hạng sang, linh hoạt và tiện nghi nhất. 
-              Sẵn sàng cho mọi chuyến đi của bạn.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="max-w-2xl">
+              <span className="inline-block px-4 py-1.5 bg-maroon/20 backdrop-blur-md rounded-full text-[10px] font-black text-white hover:text-maroon hover:bg-white transition-colors cursor-default uppercase tracking-widest mb-8 border border-white/20">
+                Exclusive Rental Experience
+              </span>
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-black font-display tracking-tighter leading-[0.9] mb-8 text-white drop-shadow-2xl">
+                Cùng GoRent <br />
+                <span className="text-maroon brightness-125 font-serif italic font-bold text-[0.85em] tracking-normal">KIẾN TẠO <br className="sm:hidden" /> HÀNH TRÌNH</span>
+              </h1>
+              <p className="text-base sm:text-lg md:text-xl text-black mb-10 max-w-lg leading-relaxed font-bold bg-white/80 backdrop-blur-md p-5 sm:p-6 rounded-3xl border border-white shadow-2xl">
+                Trải nghiệm dịch vụ thuê ô tô & xe máy hạng sang, linh hoạt và tiện nghi nhất. 
+                Sẵn sàng cho mọi chuyến đi của bạn.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-5 mb-10 lg:mb-12">
               <button 
                 onClick={() => navigate('/cars')}
-                className="bg-white text-maroon px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all flex items-center justify-center group"
+                className="bg-maroon text-white px-10 py-5 rounded-full font-black uppercase text-sm hover:bg-maroon-dark transition-all flex items-center justify-center group shadow-[0_20px_50px_-15px_rgba(128,0,0,0.4)] shrink-0"
               >
                 Thuê xe ngay
                 <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="glass text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all">
+              <button className="glass bg-white/10 text-white px-10 py-5 rounded-full font-black uppercase text-sm hover:bg-white/20 transition-all border border-white/40 backdrop-blur-md shrink-0">
                 Tìm hiểu thêm
               </button>
             </div>
@@ -58,42 +61,42 @@ export default function Home() {
       </section>
 
       {/* Quick Search */}
-      <div className="max-w-5xl mx-auto px-4 -mt-16 relative z-20">
-        <div className="glass bg-white/40 border-white/30 rounded-3xl shadow-2xl shadow-maroon/5 p-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="max-w-5xl mx-auto px-4 -mt-10 sm:-mt-16 relative z-20">
+        <div className="glass bg-white/40 backdrop-blur-3xl border border-white rounded-[2.5rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] p-6 md:p-10 grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-1">
-            <label className="text-[10px] font-bold uppercase text-maroon flex items-center">
-              <MapPin className="w-3 h-3 mr-1" /> Địa điểm
+            <label className="text-[10px] font-black uppercase text-maroon flex items-center tracking-tighter opacity-80">
+              <MapPin className="w-3 h-3 mr-2" /> Địa điểm
             </label>
             <input 
               type="text" 
-              placeholder="Hà Nội, Việt Nam"
-              className="w-full text-sm font-medium focus:outline-none placeholder:text-maroon/30 bg-transparent"
+              placeholder="Hà Nội, Việt Nam" 
+              className="w-full text-sm font-black focus:outline-none placeholder:text-gray-500 bg-transparent text-black"
             />
           </div>
-          <div className="space-y-1 md:border-l md:pl-6 border-white/20">
-            <label className="text-[10px] font-bold uppercase text-maroon flex items-center">
-              <Calendar className="w-3 h-3 mr-1" /> Ngày nhận
+          <div className="space-y-1 md:border-l md:pl-8 border-black/10">
+            <label className="text-[10px] font-black uppercase text-maroon flex items-center tracking-tighter opacity-80">
+              <Calendar className="w-3 h-3 mr-2" /> Ngày nhận
             </label>
             <input 
               type="date" 
-              className="w-full text-sm font-medium focus:outline-none bg-transparent"
+              className="w-full text-sm font-black focus:outline-none bg-transparent text-black"
             />
           </div>
-          <div className="space-y-1 md:border-l md:pl-6 border-white/20">
-            <label className="text-[10px] font-bold uppercase text-maroon flex items-center">
-              <Calendar className="w-3 h-3 mr-1" /> Ngày trả
+          <div className="space-y-1 md:border-l md:pl-8 border-black/10">
+            <label className="text-[10px] font-black uppercase text-maroon flex items-center tracking-tighter opacity-80">
+              <Calendar className="w-3 h-3 mr-2" /> Ngày trả
             </label>
             <input 
               type="date" 
-              className="w-full text-sm font-medium focus:outline-none bg-transparent"
+              className="w-full text-sm font-black focus:outline-none bg-transparent text-black"
             />
           </div>
           <button 
             onClick={() => navigate('/cars')}
-            className="bg-maroon text-white rounded-2xl flex items-center justify-center px-6 py-4 hover:bg-maroon-dark transition-all shadow-lg shadow-maroon/20"
+            className="bg-maroon text-white rounded-2xl flex items-center justify-center px-6 py-4 hover:bg-maroon-dark transition-all shadow-xl shadow-maroon/20 group"
           >
-            <Search className="w-5 h-5 mr-2" />
-            <span className="font-bold">Tìm xe</span>
+            <Search className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" />
+            <span className="font-black text-sm uppercase">Tìm xe</span>
           </button>
         </div>
       </div>

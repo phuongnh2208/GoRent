@@ -55,7 +55,7 @@ export default function Payment() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="max-w-5xl mx-auto px-4 py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <button 
         onClick={() => navigate(-1)}
         className="flex items-center text-sm font-bold text-maroon/40 hover:text-maroon transition-colors mb-8"
@@ -63,8 +63,8 @@ export default function Payment() {
         <ArrowLeft className="w-4 h-4 mr-2" /> Quay lại
       </button>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="lg:col-span-7 space-y-8">
           <div>
             <h1 className="text-3xl font-bold tracking-tight text-maroon">Thanh toán</h1>
             <p className="text-black mt-2 font-medium">Vui lòng chọn phương thức thanh toán và loại hình thanh toán.</p>
@@ -133,7 +133,7 @@ export default function Payment() {
         </div>
 
         {/* Order Summary */}
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-5">
           <div className="glass bg-white rounded-[2.5rem] overflow-hidden shadow-2xl shadow-maroon/5 border border-maroon/10 sticky top-24">
             <div className="relative h-44 overflow-hidden">
               <img src={car.image} className="w-full h-full object-cover" alt={car.name} />
@@ -144,7 +144,7 @@ export default function Payment() {
               </div>
             </div>
 
-            <div className="p-8 space-y-6">
+            <div className="p-8 sm:p-10 space-y-6">
               <div className="space-y-4">
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-black font-medium">Biển số:</span>
@@ -176,7 +176,7 @@ export default function Payment() {
               <button 
                 onClick={handlePayment}
                 disabled={isProcessing}
-                className="w-full bg-maroon text-white py-4 rounded-2xl font-bold hover:bg-maroon-dark transition-all flex items-center justify-center shadow-xl shadow-maroon/20 disabled:opacity-50"
+                className="w-full bg-maroon text-white py-5 rounded-2xl font-black uppercase text-sm tracking-wider hover:bg-maroon-dark transition-all flex items-center justify-center shadow-2xl shadow-maroon/30 disabled:opacity-50"
               >
                 {isProcessing ? (
                   <motion.div 
@@ -185,7 +185,7 @@ export default function Payment() {
                     className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full"
                   />
                 ) : (
-                  <>Xác nhận & Thanh toán <ChevronRight className="ml-2 w-4 h-4" /></>
+                  <>Xác nhận & Thanh toán <ChevronRight className="ml-3 w-5 h-5" /></>
                 )}
               </button>
             </div>
