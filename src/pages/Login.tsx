@@ -40,7 +40,7 @@ export default function Login() {
       <div 
         className="absolute inset-0 z-0 scale-105"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=2000")',
+          backgroundImage: 'url("https://kovar.vn/wp-content/uploads/2020/08/bmw-i8.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'brightness(0.4) contrast(1.1)'
